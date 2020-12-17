@@ -11,7 +11,8 @@ public:
       : height(ht), width(wd), contents(ht * wd, ' ') {}
   Screen(pos ht, pos wd, content_type c)
       : height(ht), width(wd), contents(ht * wd, c) {}
-
+  //get函数如果没有参数得到光标处的值 否则得到给定行列的值  
+  //因为是只读操作所以形参括号后要加const表示不能通过this改变其所指的值 返回值也是const char &
   const content_type &get() const { return contents[cursor]; }
   //content_type &get() { return contents[cursor]; }
   const content_type &get(pos row, pos col) const;
