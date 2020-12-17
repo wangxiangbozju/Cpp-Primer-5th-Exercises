@@ -3,17 +3,17 @@
 #include <iostream>
 
 class Screen;
-
+//Window_mgr中出现了Screen 所以要先声明class Screen
 class Window_mgr {
 public:
   using screen_index = std::vector<Screen>::size_type;
-  void clear(screen_index);
-  Window_mgr();
+  void clear(screen_index);//声明clear函数
+  Window_mgr(); //声明默认构造函数
 
 private:
   std::vector<Screen> screens;  //{Screen(24, 80)};
 };
-
+//Screen中要声明Window_mgr的clear为友元函数 所以需要先定义Window_mgr
 class Screen {
   friend void Window_mgr::clear(screen_index);
 
@@ -99,10 +99,11 @@ void Screen::do_display(std::ostream &os) const {
   }
 }
 
-Window_mgr::Window_mgr() : screens{Screen(24, 80)} {}
+Window_mgr::Window_mgr() : screens{Screen(24, 80)} {} //默认构造函数 ":"后面是初始化语句和{函数体}
+//方括号初始化screens 这个vector
 
 void Window_mgr::clear(screen_index i) {
-  Screen &s = screens[i];
+  Screen &s = screens[i];//s是Screen类型的引用 绑定了screens向量中的第i个 
   s.contents = std::string(s.height * s.width, ' ');
 }
 
