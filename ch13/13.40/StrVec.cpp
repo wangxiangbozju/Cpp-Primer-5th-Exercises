@@ -52,35 +52,43 @@ StrVec &StrVec::operator=(const StrVec &rhs) {
   return *this;
 }
 
-
+//push_back前一定要先检查capacity()够不够并且分配 (chk_n_alloc();) check
 void StrVec::push_back(const std::string &s) {
   chk_n_alloc();
   alloc.construct(first_free++, s);
 }
 
+//pop_back前一定要看看是不是空的
 void StrVec::pop_back() {
   if (size() > 0)
     alloc.destroy(--first_free);
 }
-
+//capacity是大的 size是小的 
+//先allocate（）分配空间 再construct扔东西进去
 void StrVec::reserve(size_type n) {
   if (n > capacity()) {
+    //申请新内存空间
     auto new_first_elem = alloc.allocate(n);
     auto new_first_free = new_first_elem;
     auto old_first_elem = first_elem;
+    //把原来的string通过移动构造扔到新的内存空间 扔size()次
     for (size_type i = 0; i != size(); ++i)
       alloc.construct(new_first_free++, std::move(*old_first_elem++));
+    //清理老的内存空间
     free();
+    //重新组织三个指针
     first_elem = new_first_elem;
     first_free = new_first_free;
     cap = first_elem + n;
   }
 }
-
+//resize(size_type n, const std::string &s)使得size()使用后刚好为n 多退少补
 void StrVec::resize(size_type n, const std::string &s) {
+  //原size()小于n 用s填充
   if (n > size()) {
     for (int i = n - size(); i != 0; --i)
       push_back(s);
+   //大于 则多于的弹出来
   } else if (n < size()) {
     for (int i = size() - n; i != 0; --i)
       pop_back();
