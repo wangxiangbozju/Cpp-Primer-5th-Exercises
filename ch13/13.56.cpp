@@ -36,7 +36,7 @@ Foo Foo::sorted() const & {
   std::cout << "Foo Foo::sorted() const &" << std::endl;
   Foo ret(*this);
   return ret.sorted();
-  // Error: `ret` is an lvalue, thus it will recusively call itself infinitely.
+  // Error: `ret` is an lvalue, thus it will recusively call itself infinitely.(调用本函数）
 }
 /**/
 
