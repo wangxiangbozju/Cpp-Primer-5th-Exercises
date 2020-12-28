@@ -56,6 +56,7 @@ void String::reallocate(size_type n) {
   cap = first_elem + n;
 }
 
+//先析构destory 再回收内存 deallocate
 void String::free() {
   while (!empty())
     alloc.destroy(--first_free);
