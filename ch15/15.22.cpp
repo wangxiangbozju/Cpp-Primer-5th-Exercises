@@ -15,7 +15,7 @@ class Shape2D_base : public Shape_base {
 public:
   using value_type = Shape_base::value_type;
   using Coordinate = std::pair<value_type, value_type>;
-  virtual value_type  perimeter() const = 0;
+  virtual value_type  perimeter() const = 0;//纯虚函数 不能创建Shape2D_base的实例 必须由子类override
   virtual value_type area() const = 0;
 };
 class Shape3D_base : public Shape_base {
