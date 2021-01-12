@@ -136,7 +136,7 @@ public:
   //Bulk_quote() = default;
   //Bulk_quote(const std::string &book, double pri, std::size_t qty, double disc)
   //    : Disc_quote(book, pri, qty, disc) { }
-  using Disc_quote::Disc_quote;
+  using Disc_quote::Disc_quote; //using语句继承所有的基类构造函数 参数列表完全相同
 
   double net_price(std::size_t n) const override {
     if (n >= quantity)
