@@ -12,13 +12,11 @@ class QueryResult;
 #include "BinaryQuery.h"
 
 class AndQuery : public BinaryQuery {
+  //operator&要用到BinaryQuery的构造函数
   friend Query operator&(const Query &, const Query &);
-
+  
+  //委托了BinaryQuery的构造函数
   AndQuery(const Query &l, const Query &r) : BinaryQuery(l, r, "&") {
-#if DEBUG_LEVEL >= 1
-    std::cout << "AndQuery::AndQuery(const Query &, const Query &)"
-              << std::endl;
-#endif
   }
 
   QueryResult eval(const TextQuery &) const override;
