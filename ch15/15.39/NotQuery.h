@@ -10,17 +10,17 @@ class QueryResult;
 #include "Query.h"
 #include "Query_base.h"
 
+//构造函数接受const Query & override了两个继承于Query_base的虚函数
 class NotQuery : public Query_base {
+  // operator~需要使用NotQuery的构造函数 应该是友元函数
   friend Query operator~(const Query &);
 
   NotQuery(const Query &query) : q(query) {
   }
-
   QueryResult eval(const TextQuery &) const override;
   std::string rep() const override {
     return "~(" + q.rep() + ")";
   }
-
   Query q;
 };
 
