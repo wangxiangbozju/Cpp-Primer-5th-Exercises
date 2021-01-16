@@ -28,8 +28,8 @@ QueryResult TextQuery::query(const std::string &word) const {
     //return QueryResult(word);
     return QueryResult(word, 0, nodata, text);
   line_no_type total = 0;
-  for (const auto &ln : *(it->second)) {
-    std::istringstream iss((*text)[ln]);
+  for (const auto &ln : *(it->second)) {   //it—>second 是shared_ptr<set> ln是set中元素 即行的序号
+    std::istringstream iss((*text)[ln]);  //text 是指向vector<string>的 shared_ptr
     for (std::string wd; iss >> wd; )
       if (wd == word)
         ++total;
