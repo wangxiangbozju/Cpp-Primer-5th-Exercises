@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "TextQuery.h"
+#include "TextQuery.h" //主文件中不需要include .cpp文件  只需要include.h
 #include "QueryResult.h"
 
 void runQueries(std::ifstream &infile) {
