@@ -1,13 +1,9 @@
 #ifndef NOTQUERY_H
 #define NOTQUERY_H
 
-//因为TextQuery  QueryResult
+
 class TextQuery;
 class QueryResult;
-
-#if DEBUG_LEVEL >= 1
-#include <iostream>
-#endif
 
 #include <string>
 #include <memory>
@@ -18,16 +14,10 @@ class NotQuery : public Query_base {
   friend Query operator~(const Query &);
 
   NotQuery(const Query &query) : q(query) {
-#if DEBUG_LEVEL >= 1
-  std::cout << "NotQuery::NotQuery(const Query &)" << std::endl;
-#endif
   }
 
   QueryResult eval(const TextQuery &) const override;
   std::string rep() const override {
-#if DEBUG_LEVEL >= 1
-    std::cout << "NotQuery::rep" << std::endl;
-#endif
     return "~(" + q.rep() + ")";
   }
 
