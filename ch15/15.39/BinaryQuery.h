@@ -6,6 +6,7 @@
 #include "Query.h"
 
 class BinaryQuery : public Query_base {
+  //protected派生类可以用 private派生类也不能用
 protected:
   BinaryQuery(const Query &l, const Query &r, const std::string &o)
      : lhs(l), rhs(r), op(o) {
