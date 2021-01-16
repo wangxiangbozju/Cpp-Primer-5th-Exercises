@@ -21,12 +21,12 @@ public:
       : word(wd), total(t), line_numbers(lns), line_text(lt) {}
 
 private:
-  std::string word;
-  line_no_type total;
-  std::shared_ptr<std::set<line_no_type>> line_numbers;
-  std::shared_ptr<std::vector<std::string>> line_text;
+  std::string word;//查什么单词
+  line_no_type total;//出现总次数
+  std::shared_ptr<std::set<line_no_type>> line_numbers;//各出现在多少行的set （指针） 
+  std::shared_ptr<std::vector<std::string>> line_text;//出现行的这些行的文本vector (指针）
 };
 
-std::ostream &print(std::ostream &os, const QueryResult &qr);
+std::ostream &print(std::ostream &os, const QueryResult &qr); //友元函数声明和函数声明都需要
 
 #endif
