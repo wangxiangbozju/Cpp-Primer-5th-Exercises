@@ -9,22 +9,19 @@ class Query_base;
 #include <string>
 #include <iostream>
 
+//给用户查询的接口 提供接受string的构造函数（public) 和接受Query_base的指针的构造函数(private)
 class Query {
+  //  operator~  operator& operator|都需要使用Query的构造函数 应该申明为友元函数
   friend Query operator~(const Query &);
   friend Query operator&(const Query &, const Query &);
   friend Query operator|(const Query &, const Query &);
 
 public:
   Query(const std::string &);
-
   QueryResult eval(const TextQuery &t) const;
   std::string rep() const;
-
 private:
   Query(std::shared_ptr<Query_base> query) : pq(query) {
-#if DEBUG_LEVEL >= 1
-    std::cout << "Query::Query(std::shared_ptr<Query_base>)" << std::endl;
-#endif
   }
 
   std::shared_ptr<Query_base> pq;
