@@ -1,6 +1,7 @@
 #ifndef NOTQUERY_H
 #define NOTQUERY_H
 
+//因为TextQuery  QueryResult
 class TextQuery;
 class QueryResult;
 
