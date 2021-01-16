@@ -13,7 +13,7 @@ class Query_base {
 protected:
   using line_no_type = TextQuery::line_no_type;
   virtual ~Query_base() = default;
-
+//纯虚函数可以private 子类依然可以override
 private:
   virtual QueryResult eval(const TextQuery &) const = 0;
   virtual std::string rep() const = 0;
