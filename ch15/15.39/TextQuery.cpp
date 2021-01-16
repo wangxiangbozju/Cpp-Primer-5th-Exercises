@@ -19,7 +19,11 @@ TextQuery::TextQuery(std::ifstream &in)
     std::istringstream iss(line);
     //一行中读入各个单词 过滤后加入
     for (std::string word; iss >> word; ) {
+      //要注意 map::operator[] 和map::at的区别
+      //map::operator[] (key) 如果不存在这样的键值对会插入这样的键值对 其中值为空
+      //map::at（key) 如果查不到会抛出异常
       auto &lns = word_map[filter_str(word)];
+      //所以上面的语句 如果不存在直接插入pair lns是空指针 如果存在得到指向set的lns指针
       if (!lns)
         lns.reset(new std::set<line_no_type>);
       lns->insert(text->size());
