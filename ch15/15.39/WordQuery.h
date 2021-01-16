@@ -6,6 +6,7 @@
 #include "QueryResult.h"
 #include "Query_base.h"
 
+//WordQuery ：继承抽象的Query_base   override其两个虚函数 
 class WordQuery : public Query_base {
   friend class Query;
   WordQuery(const std::string &s) : query_word(s) {}
