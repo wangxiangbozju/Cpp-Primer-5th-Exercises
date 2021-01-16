@@ -14,11 +14,11 @@ class TextQuery {
 public:
   typedef std::vector<std::string>::size_type line_no_type;
 
-  explicit TextQuery(std::ifstream &in);
+  explicit TextQuery(std::ifstream &in); //用一个ifstream作为构造函数 
 
   QueryResult query(const std::string &word) const;
 
-private:
+private: //数据成员是两个指针  一个指针是指向 ifstream构造的vector<string>（全文本） 一个指针是指向每个单词和其出现的行set的map
   std::shared_ptr<std::vector<std::string>> text;
   std::map<std::string, std::shared_ptr<std::set<line_no_type>>> word_map;
 };
