@@ -8,9 +8,7 @@
 #endif
 
 QueryResult OrQuery::eval(const TextQuery &t) const {
-#if DEBUG_LEVEL >= 1
-  std::cout << "OrQuery::eval" << std::endl;
-#endif
+  
   auto left = lhs.eval(t), right = rhs.eval(t);
   auto ret_lines =
       std::make_shared<std::set<line_no_type>>(left.cbegin(), left.cend());
