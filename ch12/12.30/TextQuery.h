@@ -1,7 +1,7 @@
 #ifndef TEXTQUERY_H
 #define TEXTQUERY_H
 
-class QueryResult;
+class QueryResult;//必须先声明 否则后面query的返回类型不知道QueryResult是什么东西
 
 #include <fstream>
 #include <string>
