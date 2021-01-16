@@ -3,6 +3,7 @@
 #include "TextQuery.h"
 #include "QueryResult.h"
 
+//过滤文本中标点符号 并且全部小写
 std::string TextQuery::filter_str(const std::string &s) const {
   std::string ret;
   for (const auto &ch : s)
@@ -13,8 +14,10 @@ std::string TextQuery::filter_str(const std::string &s) const {
 
 TextQuery::TextQuery(std::ifstream &in)
     : text(new StrVec), word_map() {
+  //每次从ifstream中读入一行
   for (std::string line; std::getline(in, line); text->push_back(line)) {
     std::istringstream iss(line);
+    //一行中读入各个单词 过滤后加入
     for (std::string word; iss >> word; ) {
       auto &lns = word_map[filter_str(word)];
       if (!lns)
